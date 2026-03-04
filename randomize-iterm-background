@@ -27,8 +27,6 @@ class RandomizeItermBackground
 
   def run
     parse_options!
-    validate_environment!
-
     target_color = generate_random_color
     apply_color(target_color)
   end
@@ -52,17 +50,6 @@ class RandomizeItermBackground
 
     warn_message("#{name} option is not 3 octet hexadecimal: #{value}")
     exit exit_code
-  end
-
-  def validate_environment!
-    return if running_on_iterm?
-
-    warn_message('works only on iTerm2')
-    exit 3
-  end
-
-  def running_on_iterm?
-    ENV['TERM_PROGRAM']&.match?(/iTerm\.app/)
   end
 
   def generate_random_color
