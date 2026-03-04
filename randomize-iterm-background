@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# randomize-iterm-background
+# randomize-terminal-background
 #
 # Copyright (c) 2022 jun morimoto
 # Released under the MIT license
@@ -9,11 +9,11 @@
 
 require 'optparse'
 
-# Handles randomizing the iTerm2 background color
-class RandomizeItermBackground
+# Handles randomizing the OSC-compatible terminal background color
+class RandomizeTerminalBackground
   DEFAULT_BACKGROUND = '202020'
   DEFAULT_AMPLITUDE = '101010'
-  ITERM_ESCAPE_SEQUENCE = "\e]11;#%<hex>s\a"
+  OSC_ESCAPE_SEQUENCE = "\e]11;#%<hex>s\a"
 
   def initialize(argv)
     @argv = argv
@@ -98,7 +98,7 @@ class RandomizeItermBackground
   end
 
   def print_sequence(hex)
-    STDERR.print format(ITERM_ESCAPE_SEQUENCE, hex: hex)
+    STDERR.print format(OSC_ESCAPE_SEQUENCE, hex: hex)
   end
 
   def generate_steps(target, steps)
@@ -122,5 +122,5 @@ class RandomizeItermBackground
 end
 
 if __FILE__ == $0
-  RandomizeItermBackground.new(ARGV).run
+  RandomizeTerminalBackground.new(ARGV).run
 end
