@@ -13,7 +13,7 @@ require 'optparse'
 class RandomizeItermBackground
   DEFAULT_BACKGROUND = '202020'
   DEFAULT_AMPLITUDE = '101010'
-  ITERM_ESCAPE_SEQUENCE = "\033]1337;SetColors=bg=%<hex>s\a"
+  ITERM_ESCAPE_SEQUENCE = "\e]11;#%<hex>s\a"
 
   def initialize(argv)
     @argv = argv
